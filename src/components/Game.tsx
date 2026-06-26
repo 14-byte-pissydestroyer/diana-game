@@ -9,7 +9,6 @@ import Scene from './Scene'
 import Dialogue from './Dialogue'
 import Choices from './Choices'
 import Inventory from './Inventory'
-import PixelCharacter from './Character'
 
 export default function Game() {
   const { state, dispatch, loadGame } = useGame()
@@ -150,18 +149,21 @@ export default function Game() {
   if (!currentScene) {
     return (
       <div className="absolute inset-0 flex items-center justify-center bg-black">
-        <p className="text-red-400 text-[10px]">Ошибка: сцена не найдена ({state.currentScene})</p>
+        <p className="text-red-400 text-sm">Ошибка: сцена не найдена ({state.currentScene})</p>
       </div>
     )
   }
 
   return (
-    <Scene background={currentScene.background}>
+    <Scene
+      background={currentScene.background}
+      characters={currentScene.characters}
+    >
       {/* Chapter title overlay */}
       {showChapterTitle && (
         <div className="absolute inset-0 z-30 flex items-center justify-center pointer-events-none">
           <div className="animate-fadeIn text-center" style={{ animationDuration: '0.5s' }}>
-            <h2 className="text-[11px] text-purple-100 px-4" style={{ textShadow: '0 0 20px rgba(167,139,250,0.5)' }}>
+            <h2 className="text-sm sm:text-base text-purple-100 px-4" style={{ textShadow: '0 0 20px rgba(167,139,250,0.5)' }}>
               {chapterTitleText}
             </h2>
           </div>
@@ -175,26 +177,6 @@ export default function Game() {
         maxHp={state.maxHp}
         chapter={state.chapter}
       />
-
-      {/* Character display area */}
-      <div className="absolute top-4 left-0 right-0 bottom-[45%] flex items-end justify-center gap-3 pointer-events-none">
-        {currentScene.characters.map((char, i) => (
-          <div
-            key={char}
-            className="animate-fadeIn"
-            style={{
-              animationDuration: '0.5s',
-              animationDelay: `${i * 0.1}s`,
-              zIndex: char === 'diana' ? 10 : 5,
-            }}
-          >
-            <PixelCharacter
-              name={char}
-              size={currentScene.characters.length === 1 ? 'lg' : 'md'}
-            />
-          </div>
-        ))}
-      </div>
 
       {/* Dialogue + Choices area */}
       <div className="absolute bottom-0 left-0 right-0 p-3 sm:p-4 z-20 space-y-2">
@@ -223,7 +205,7 @@ export default function Game() {
         {/* Continue hint when no choices */}
         {isLastDialogue && state.textComplete && !currentScene.choices && (
           <button
-            className="pixel-btn w-full text-center text-[8px] animate-pulse"
+            className="pixel-btn w-full text-center text-xs animate-pulse"
             onClick={handleAdvance}
           >
             {currentScene.ending ? '◆ Завершить' : '◆ Продолжить →'}

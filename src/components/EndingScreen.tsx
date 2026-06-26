@@ -73,7 +73,7 @@ export default function EndingScreen({ ending, onRestart }: EndingScreenProps) {
         >
           {endingInfo.title}
         </h1>
-        <p className="text-[8px] text-purple-300/60 max-w-[250px] leading-loose">
+        <p className="text-[13px] text-purple-300/60 max-w-[250px] leading-loose">
           {endingInfo.subtitle}
         </p>
       </div>
@@ -83,29 +83,29 @@ export default function EndingScreen({ ending, onRestart }: EndingScreenProps) {
         <div className="pixel-box p-4 text-center max-w-[280px]">
           {ending === 'best' && (
             <>
-              <p className="text-[8px] text-purple-200 mb-2">💜 Сделано с бесконечной любовью 💜</p>
-              <p className="text-[9px] text-[#ffd700] mb-1">Сева → Диана</p>
-              <p className="text-[8px] text-purple-300">Сикс Сэвен, навсегда.</p>
+              <p className="text-[13px] text-purple-200 mb-2">💜 Сделано с бесконечной любовью 💜</p>
+              <p className="text-[14px] text-[#ffd700] mb-1">Сева → Диана</p>
+              <p className="text-[13px] text-purple-300">Сикс Сэвен, навсегда.</p>
               <div className="my-3 border-t border-purple-700/30" />
             </>
           )}
 
           {ending === 'medium' && (
             <>
-              <p className="text-[8px] text-purple-200 mb-2">💜 Сделано с любовью, Севой для Дианы 💜</p>
+              <p className="text-[13px] text-purple-200 mb-2">💜 Сделано с любовью, Севой для Дианы 💜</p>
               <div className="my-3 border-t border-purple-700/30" />
             </>
           )}
 
           {ending === 'bad' && (
             <>
-              <p className="text-[8px] text-gray-400 mb-2">Это ещё не конец...</p>
-              <p className="text-[7px] text-purple-400/50">Попробуй ещё раз. На этот раз — верь в себя.</p>
+              <p className="text-[13px] text-gray-400 mb-2">Это ещё не конец...</p>
+              <p className="text-[12px] text-purple-400/50">Попробуй ещё раз. На этот раз — верь в себя.</p>
               <div className="my-3 border-t border-purple-700/30" />
             </>
           )}
 
-          <p className="text-[6px] text-purple-500/30">
+          <p className="text-[12px] text-purple-500/30">
             Путь Дианы • v1.0
           </p>
         </div>
@@ -114,7 +114,7 @@ export default function EndingScreen({ ending, onRestart }: EndingScreenProps) {
       {/* Restart button */}
       <div className={`relative z-10 mt-6 w-full max-w-[260px] transition-all duration-700 ${showButton ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <button
-          className="pixel-btn w-full text-center text-[9px]"
+          className="pixel-btn w-full text-center text-[14px]"
           onClick={onRestart}
         >
           {ending === 'bad' ? '🔄 Попробовать ещё раз' : '🔄 Начать заново'}

@@ -314,7 +314,7 @@ export default function PixelCharacter({ name, size = 'md' }: PixelCharacterProp
       <div
         className="mt-1 text-center"
         style={{
-          fontSize: '6px',
+          fontSize: '12px',
           color: config.accent,
           textShadow: `0 0 4px ${config.accent}80`,
           letterSpacing: '1px',

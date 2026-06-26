@@ -86,10 +86,10 @@ export default function TitleScreen({ onStart, onContinue, hasSave }: TitleScree
 
       {/* Subtitle */}
       <div className={`text-center relative z-10 transition-all duration-1000 ${showSubtitle ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-        <p className="text-[8px] text-purple-300/70 leading-loose max-w-[250px]">
+        <p className="text-[13px] text-purple-300/70 leading-loose max-w-[250px]">
           Интерактивная пиксельная новелла
         </p>
-        <p className="text-[7px] text-purple-400/40 mt-1">
+        <p className="text-[12px] text-purple-400/40 mt-1">
           💜 Подарок от Севы для Дианы 💜
         </p>
       </div>
@@ -97,7 +97,7 @@ export default function TitleScreen({ onStart, onContinue, hasSave }: TitleScree
       {/* Buttons */}
       <div className={`relative z-10 mt-8 w-full max-w-[260px] space-y-3 transition-all duration-700 ${showButtons ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
         <button
-          className="pixel-btn w-full text-center text-[10px] animate-pulse-glow"
+          className="pixel-btn w-full text-center text-[15px] animate-pulse-glow"
           onClick={onStart}
         >
           ▶ Новая игра
@@ -105,7 +105,7 @@ export default function TitleScreen({ onStart, onContinue, hasSave }: TitleScree
 
         {hasSave && (
           <button
-            className="pixel-btn w-full text-center text-[9px]"
+            className="pixel-btn w-full text-center text-[14px]"
             onClick={() => {
               if (!onContinue()) {
                 onStart()
@@ -119,10 +119,10 @@ export default function TitleScreen({ onStart, onContinue, hasSave }: TitleScree
 
       {/* Bottom decoration */}
       <div className={`absolute bottom-4 text-center transition-all duration-700 ${showButtons ? 'opacity-100' : 'opacity-0'}`}>
-        <p className="text-[6px] text-purple-500/30">
+        <p className="text-[12px] text-purple-500/30">
           Нажми "Новая игра" чтобы начать приключение
         </p>
-        <p className="text-[5px] text-purple-600/20 mt-1">
+        <p className="text-[16px] text-purple-600/20 mt-1">
           v1.0 • Made with 💜
         </p>
       </div>

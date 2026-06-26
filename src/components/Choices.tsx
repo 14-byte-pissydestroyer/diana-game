@@ -32,7 +32,7 @@ export default function Choices({ options, onSelect }: ChoicesProps) {
           <span className="text-xl flex-shrink-0">{option.emoji}</span>
           <span className="flex-1 text-left leading-relaxed">{option.text}</span>
           {option.disabled && option.reason && (
-            <span className="text-[10px] text-red-400/80 flex-shrink-0 ml-2">
+            <span className="text-[15px] text-red-400/80 flex-shrink-0 ml-2">
               ({option.reason})
             </span>
           )}

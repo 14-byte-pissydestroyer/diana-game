@@ -25,12 +25,12 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
     <>
       {/* Inventory toggle button */}
       <button
-        className="fixed top-3 right-3 z-40 pixel-btn !p-2 !px-3 text-[8px] flex items-center gap-1"
+        className="fixed top-3 right-3 z-40 pixel-btn !p-2 !px-3 text-[13px] flex items-center gap-1"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="text-sm">🎒</span>
         {items.length > 0 && (
-          <span className="bg-purple-600 text-white text-[7px] rounded-full w-4 h-4 flex items-center justify-center">
+          <span className="bg-purple-600 text-white text-[12px] rounded-full w-4 h-4 flex items-center justify-center">
             {items.length}
           </span>
         )}
@@ -40,7 +40,7 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
       <div className="fixed top-3 left-3 z-40 flex items-center gap-2">
         {/* HP */}
         <div className="pixel-box !p-1 !px-2 flex items-center gap-1">
-          <span className="text-[8px] text-red-400">❤️</span>
+          <span className="text-[13px] text-red-400">❤️</span>
           <div className="flex gap-0.5">
             {Array.from({ length: maxHp }).map((_, i) => (
               <div
@@ -57,7 +57,7 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
 
         {/* Chapter */}
         <div className="pixel-box !p-1 !px-2">
-          <span className="text-[7px] text-purple-300">
+          <span className="text-[12px] text-purple-300">
             Гл.{chapter}
           </span>
         </div>
@@ -74,12 +74,12 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
             className="pixel-box w-full max-w-sm relative z-10 p-4"
             onClick={e => e.stopPropagation()}
           >
-            <h2 className="text-[11px] text-purple-200 mb-3 text-center">
+            <h2 className="text-[16px] text-purple-200 mb-3 text-center">
               🎒 Инвентарь
             </h2>
 
             {items.length === 0 ? (
-              <p className="text-[8px] text-purple-400/50 text-center py-4">
+              <p className="text-[13px] text-purple-400/50 text-center py-4">
                 Пусто...
               </p>
             ) : (
@@ -90,7 +90,7 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
                     className="flex items-center gap-2 p-2 bg-purple-900/30 rounded border border-purple-700/30"
                   >
                     <span className="text-lg">{ITEM_ICONS[item] || '📦'}</span>
-                    <span className="text-[8px] text-purple-100">{item}</span>
+                    <span className="text-[13px] text-purple-100">{item}</span>
                   </div>
                 ))}
               </div>
@@ -99,7 +99,7 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
             {/* HP section */}
             <div className="mt-4 pt-3 border-t border-purple-700/30">
               <div className="flex items-center justify-between">
-                <span className="text-[8px] text-purple-300">Здоровье</span>
+                <span className="text-[13px] text-purple-300">Здоровье</span>
                 <div className="flex gap-1">
                   {Array.from({ length: maxHp }).map((_, i) => (
                     <span key={i} className="text-sm">
@@ -111,7 +111,7 @@ export default function Inventory({ items, hp, maxHp, chapter }: InventoryProps)
             </div>
 
             <button
-              className="pixel-btn w-full mt-3 text-center text-[8px]"
+              className="pixel-btn w-full mt-3 text-center text-[13px]"
               onClick={() => setIsOpen(false)}
             >
               Закрыть
