@@ -28,7 +28,6 @@ export default function Dialogue({
   const textRef = useRef(text)
   const skipRef = useRef(false)
 
-  // Reset when text changes
   useEffect(() => {
     textRef.current = text
     setDisplayedText('')
@@ -37,7 +36,6 @@ export default function Dialogue({
     skipRef.current = false
   }, [text])
 
-  // Typewriter effect
   useEffect(() => {
     if (isComplete) return
     if (charIndex >= textRef.current.length) {
@@ -46,10 +44,8 @@ export default function Dialogue({
       return
     }
 
-    const speed = isNarrator ? 25 : isThought ? 35 : 20
+    const speed = isNarrator ? 30 : isThought ? 40 : 25
     const char = textRef.current[charIndex]
-
-    // Pause on punctuation
     const pauseChars = ['.', '!', '?', '…', '—', ',']
     const delay = pauseChars.includes(char) ? speed * 4 : speed
 
@@ -67,7 +63,6 @@ export default function Dialogue({
     if (isComplete) {
       onSkip()
     } else {
-      // Skip to full text
       if (timerRef.current) clearTimeout(timerRef.current)
       skipRef.current = true
       setDisplayedText(textRef.current)
@@ -77,87 +72,98 @@ export default function Dialogue({
     }
   }, [isComplete, onComplete, onSkip])
 
-  // Determine speaker color
   const getSpeakerColor = () => {
     if (isNarrator) return '#a78bfa'
     if (speaker === 'Диана') return '#ff69b4'
     if (speaker === 'Сева') return '#4a90d9'
     if (speaker === 'Дио') return '#ff4444'
-    if (speaker === 'Джотаро') return '#4a90d9'
+    if (speaker === 'Джотаро') return '#5ba3ff'
     if (speaker === 'Арсенеус') return '#ffd700'
-    if (speaker === 'Виктор') return '#00ff88'
-    if (speaker === 'Свапна') return '#ff69b4'
+    if (speaker === 'Викториус' || speaker === 'Виктор') return '#00ff88'
+    if (speaker === 'Свапна') return '#ff9ecd'
     if (speaker === 'Шлюхидзе') return '#ff1493'
     if (speaker === 'Протитутидзе') return '#ff4444'
-    if (speaker === 'Тёлкидзе') return '#a78bfa'
-    if (speaker === 'Тролль') return '#8b8b00'
+    if (speaker === 'Тёлкидзе') return '#c4b5fd'
+    if (speaker === 'Тролль') return '#bdbd00'
     if (speaker === 'Свитка') return '#ffd700'
     return '#e8d5ff'
   }
 
-  const getBoxStyle = () => {
-    if (isNarrator) return 'border-purple-500/50'
-    if (isThought) return 'border-blue-400/50'
-    return 'border-purple-600/50'
+  const getBorderColor = () => {
+    if (isNarrator) return 'rgba(167, 139, 250, 0.4)'
+    if (isThought) return 'rgba(96, 165, 250, 0.4)'
+    return 'rgba(124, 92, 191, 0.6)'
+  }
+
+  const getEmotionEmoji = () => {
+    switch (emotion) {
+      case 'happy': return '😊'
+      case 'sad': return '😢'
+      case 'angry': return '😠'
+      case 'scared': return '😨'
+      case 'determined': return '😤'
+      case 'thinking': return '🤔'
+      case 'surprised': return '😮'
+      default: return null
+    }
   }
 
   return (
     <div
-      className={`w-full pixel-box ${getBoxStyle()} rounded-sm cursor-pointer select-none`}
+      className="w-full pixel-box rounded-lg cursor-pointer select-none animate-fadeInUp"
+      style={{
+        borderColor: getBorderColor(),
+        animationDuration: '0.3s',
+      }}
       onClick={handleClick}
-      onTouchEnd={handleClick}
       role="button"
       tabIndex={0}
     >
       {/* Speaker name */}
       {!isNarrator && speaker !== 'Свитка' && speaker !== 'Голос' && (
-        <div className="px-3 pt-2 pb-1">
+        <div className="px-4 pt-3 pb-1">
           <span
-            className="text-[9px] tracking-wider uppercase"
+            className="speaker-name"
             style={{
               color: getSpeakerColor(),
-              textShadow: `0 0 6px ${getSpeakerColor()}60`,
+              textShadow: `0 0 10px ${getSpeakerColor()}50`,
             }}
           >
             {speaker}
-            {emotion && emotion !== 'normal' && (
-              <span className="ml-2 opacity-70">
-                {emotion === 'happy' && '😊'}
-                {emotion === 'sad' && '😢'}
-                {emotion === 'angry' && '😠'}
-                {emotion === 'scared' && '😨'}
-                {emotion === 'determined' && '😤'}
-                {emotion === 'thinking' && '🤔'}
-                {emotion === 'surprised' && '😮'}
-              </span>
+            {getEmotionEmoji() && (
+              <span className="ml-2 text-base">{getEmotionEmoji()}</span>
             )}
           </span>
         </div>
       )}
 
       {/* Text area */}
-      <div className="px-3 pb-3 pt-1">
+      <div className="px-4 pb-4 pt-1">
         <p
-          className={`leading-relaxed ${
+          className={
             isNarrator
-              ? 'text-[9px] italic text-purple-200/80'
+              ? 'dialogue-text-narrator text-purple-200/90'
               : isThought
-              ? 'text-[9px] italic text-blue-200/80'
-              : 'text-[10px] text-gray-100'
-          }`}
+              ? 'dialogue-text-thought text-blue-200/90'
+              : 'dialogue-text text-gray-100'
+          }
           style={{
-            textShadow: isNarrator ? '0 0 4px rgba(167,139,250,0.3)' : 'none',
+            textShadow: isNarrator 
+              ? '0 0 8px rgba(167,139,250,0.3)' 
+              : isThought 
+              ? '0 0 8px rgba(96,165,250,0.3)' 
+              : 'none',
           }}
         >
-          {isThought && <span className="text-blue-300/50 mr-1">💭</span>}
+          {isThought && <span className="text-blue-300/60 mr-1">💭</span>}
           {displayedText}
           {!isComplete && <span className="typewriter-cursor" />}
         </p>
 
-        {/* Click to continue hint */}
+        {/* Click to continue */}
         {isComplete && (
-          <div className="mt-2 text-right">
-            <span className="text-[7px] text-purple-400/50 animate-pulse">
+          <div className="mt-3 text-right">
+            <span className="click-hint text-purple-400/60">
               ▼ нажми
             </span>
           </div>

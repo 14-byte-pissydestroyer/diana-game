@@ -16,24 +16,25 @@ interface ChoicesProps {
 
 export default function Choices({ options, onSelect }: ChoicesProps) {
   return (
-    <div className="w-full space-y-2 animate-fadeIn" style={{ animationDuration: '0.3s' }}>
+    <div className="w-full space-y-3 animate-fadeInUp" style={{ animationDuration: '0.4s' }}>
       {options.map((option, i) => (
         <button
           key={i}
-          className={`pixel-btn w-full text-[9px] leading-relaxed flex items-center gap-2 ${
-            option.disabled ? 'opacity-40 cursor-not-allowed' : ''
+          className={`pixel-btn w-full flex items-center gap-3 ${
+            option.disabled ? 'choice-disabled' : ''
           }`}
-          onClick={() => !option.disabled && onSelect(i)}
-          onTouchEnd={(e) => {
-            e.preventDefault()
-            if (!option.disabled) onSelect(i)
+          style={{
+            animationDelay: `${i * 0.1}s`,
           }}
+          onClick={() => !option.disabled && onSelect(i)}
           disabled={option.disabled}
         >
-          <span className="text-lg flex-shrink-0">{option.emoji}</span>
-          <span className="flex-1 text-left">{option.text}</span>
+          <span className="text-xl flex-shrink-0">{option.emoji}</span>
+          <span className="flex-1 text-left leading-relaxed">{option.text}</span>
           {option.disabled && option.reason && (
-            <span className="text-[7px] text-red-400 flex-shrink-0">({option.reason})</span>
+            <span className="text-[10px] text-red-400/80 flex-shrink-0 ml-2">
+              ({option.reason})
+            </span>
           )}
         </button>
       ))}
